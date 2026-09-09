@@ -8,7 +8,7 @@ class MoveTurtleSquare(Node):
     def __init__(self):
         super().__init__('move_turtle_square')
         self.publisher = self.create_publisher(Twist, '/turtle1/cmd_vel', 10)
-        self.get_logger().info("Memulai kontrol otomatis TurtleSim membentuk persegi...")
+        self.get_logger().info("Memulai kontrol Turtlesim")
         time.sleep(1)
 
     def move_forward(self, speed=2.0, duration=2.0):
@@ -19,7 +19,7 @@ class MoveTurtleSquare(Node):
         while time.time() - start < duration:
             self.publisher.publish(cmd)
             time.sleep(0.05)
-            
+ 
         cmd.linear.x = 0.0
         self.publisher.publish(cmd)
         time.sleep(0.3)
@@ -39,13 +39,13 @@ class MoveTurtleSquare(Node):
 
     def run(self):
         for i in range(4):
-            self.get_logger().info(f"[Sisi {i+1}/4] Maju...")
+            self.get_logger().info(f"[Sisi {i+1}/4] Maju")
             self.move_forward()
             
-            self.get_logger().info(f"[Sudut {i+1}/4] Belok 90 derajat...")
+            self.get_logger().info(f"[Sudut {i+1}/4] Belok 90 derajat")
             self.turn_90_degrees()
             
-        self.get_logger().info("Selesai! Perjalanan membentuk lintasan persegi berhasil dibuat.")
+        self.get_logger().info("Selesai, persegi berhasil dibuat.")
 
 def main(args=None):
     rclpy.init(args=args)
